@@ -3,10 +3,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/sections/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/sections/Header.astro';
-import PostMeta from '../components/ui/meta/PostMeta.astro';
-import ShareButtons from '../components/ui/share/ShareButtons.astro';
 import PostNav from '../components/ui/nav/PostNav.astro';
 
 type BlogData = CollectionEntry<'blog'>['data'];
@@ -77,22 +74,15 @@ const { title, description, pubDate, updatedDate, heroImage, showHeader = true, 
 					color: var(--color-text-secondary);
 				}
             .title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-                margin: 0 0 0.5em 0;
+                margin-bottom: 1em;
+                padding: 1em 0;
+                text-align: center;
+                line-height: 1;
+            }
+            .title h1 {
+                margin: 0;
                 color: var(--color-text-primary);
-			}
-			.date {
-                margin-bottom: 0.5em;
-                color: var(--color-text-muted);
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
+            }
 		</style>
 	</head>
 
@@ -108,22 +98,10 @@ const { title, description, pubDate, updatedDate, heroImage, showHeader = true, 
                 <div class="prose">
                     {showHeader && (
                         <div class="title">
-                            <div class="date">
-                                <FormattedDate date={pubDate} />
-                                {
-                                    updatedDate && (
-                                        <div class="last-updated-on">
-                                            Last updated on <FormattedDate date={updatedDate} />
-                                        </div>
-                                    )
-                                }
-                            </div>
                             <h1>{title}</h1>
                             <hr />
                         </div>
                     )}
-                    <ShareButtons title={title} url={Astro.url.toString()} />
-					<PostMeta pubDate={pubDate} readingTimeMin={readingTimeMin} authorName={Astro.props.author || 'Site Author'} />
                     <slot />
                     <PostNav prev={prevPost} next={nextPost} />
                 </div>

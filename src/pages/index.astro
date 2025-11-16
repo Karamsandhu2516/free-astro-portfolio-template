@@ -33,24 +33,21 @@ import figmaLogo from '../assets/logos/Figma-logo.svg';
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Site Author',
+      name: 'Karamjit Kaur',
       url: new URL('/', Astro.site).toString(),
       logo: new URL('/favicon.svg', Astro.site).toString(),
       sameAs: [
-        'https://x.com/guihubie',
-        'https://www.linkedin.com/in/guilherme-hubie/',
+        'https://www.linkedin.com/in/karamjit-kaur/',
       ],
     })} />
 	</head>
 	<body>
 		<Header />
 		<main>
-      <HeroSection
-        title="Your Headline Goes Here!"
-        subtitle="I build softwares that brings you loyal subscribers."
-        showCTA
-        primaryCTA={{ text: 'View Projects', href: '/portfolio' }}
-        secondaryCTA={{ text: 'Read Blog', href: '/blog' }}
+      <HeroSection 
+        title="Karamjit Kaur" 
+        subtitle="DevOps Engineer" 
+        description="Specializing in Docker, GitLab, Kubernetes, and cloud infrastructure. Passionate about building efficient CI/CD pipelines and scalable systems."
       />
      
 

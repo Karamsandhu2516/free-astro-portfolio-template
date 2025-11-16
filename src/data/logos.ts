@@ -1,34 +1,18 @@
-// Build a list of available SVG logos from src/assets/logos
-// Using Vite's import.meta.glob to keep imports clean and centralized
-
-const modules = import.meta.glob('../assets/logos/*.svg', {
-  eager: true,
-  // Vite v5 style: returns string URLs
-  query: '?url',
-  import: 'default',
-});
+// Build a list of available SVG logos from external URLs
 
 type LogoItem = { name: string; logo: string };
 
-function toNiceName(filePath: string): string {
-  const base = filePath.split('/').pop() || '';
-  const withoutExt = base.replace(/\.[^.]+$/, '');
-  // strip trailing "-logo" or "logo" (case-insensitive)
-  const withoutLogo = withoutExt.replace(/-?logo$/i, '');
-  // normalize separators to spaces
-  const normalized = withoutLogo.replace(/[_-]+/g, ' ');
-  // insert space between camelCase words: GoogleAds -> Google Ads
-  const spaced = normalized.replace(/([a-z])([A-Z])/g, '$1 $2');
-  const trimmed = spaced.trim().replace(/\s{2,}/g, ' ');
-  // Title case each word
-  return trimmed.replace(/\b\w/g, (m) => m.toUpperCase());
-}
-
-export const logos: LogoItem[] = Object.entries(modules)
-  .map(([path, url]) => ({ name: toNiceName(path), logo: url as string }))
-  // Keep only a stable subset first (you can remove slice to include all)
-  .sort((a, b) => a.name.localeCompare(b.name));
+export const logos: LogoItem[] = [
+  { name: "Docker", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" },
+  { name: "Kubernetes", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kubernetes.svg" },
+  { name: "AWS", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg" },
+  { name: "Terraform", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/terraform.svg" },
+  { name: "Ansible", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ansible.svg" },
+  { name: "Jenkins", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jenkins.svg" },
+  { name: "GitLab", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gitlab.svg" },
+  { name: "GitHub Actions", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/githubactions.svg" },
+  { name: "Prometheus", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/prometheus.svg" },
+  { name: "Grafana", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/grafana.svg" },
+];
 
 export type { LogoItem };
-
-
