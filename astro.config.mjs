@@ -1,15 +1,18 @@
-import tailwindcss from "@tailwindcss/vite";
-// @ts-check
-
+import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
 
-// https://astro.build/config
 export default defineConfig({
-    site: 'https://example.com',
+  // IMPORTANT: Replace with your real site URL (Appwrite domain)
+  site: 'https://karamsandhu.appwrite.network',
+
+  // REQUIRED for Appwrite hosting
+  output: 'static',
+
+  // Optional but recommended so routes deploy correctly
+  trailingSlash: 'always',
+
   integrations: [mdx(), sitemap()],
 
   vite: {
